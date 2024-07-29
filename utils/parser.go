@@ -70,7 +70,7 @@ func CreateContents(meta *types.Metadata) (text string, markupText string, marku
 		event := event.(*types.PushEvent)
 		// No Activity Types
 		text = createPushText(event)
-		markupText = "Open Changes"
+		markupText = "Открыть Изменения"
 		markupUrl = event.Compare
 	case "release":
 		event := event.(*types.ReleaseEvent)
@@ -98,7 +98,7 @@ func CreateContents(meta *types.Metadata) (text string, markupText string, marku
 }
 
 func createPushText(event *types.PushEvent) string {
-	text := fmt.Sprintf("<b>🔨 %d New commit to</b> <a href='%s'>%s</a>[<code>%s</code>]\n\n",
+	text := fmt.Sprintf("<b>🔨 %d Новый коммит на</b> <a href='%s'>%s</a>[<code>%s</code>]\n\n",
 		len(event.Commits),
 		event.Repo.HTMLURL,
 		event.Repo.FullName,
@@ -106,7 +106,7 @@ func createPushText(event *types.PushEvent) string {
 	)
 
 	for _, commit := range event.Commits {
-		text += fmt.Sprintf("• <a href='%s'>%s</a> - %s by <a href='%s'>%s</a>\n",
+		text += fmt.Sprintf("• <a href='%s'>%s</a> - %s от <a href='%s'>%s</a>\n",
 			commit.Url,
 			commit.Id[:7],
 			html.EscapeString(commit.Message),
